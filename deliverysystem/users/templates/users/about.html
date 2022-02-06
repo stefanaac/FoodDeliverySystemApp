@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/bg.png' %});
+        }
+    </style>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+            <h1 style="color: white">About Us!</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-10 col-sm-12 offset-md-1 p-4 text-center">
+            <p style="color: white">YumWeGO is a Dutch multinational online food ordering and delivery company based in Amsterdam, Netherlands. It is the parent company of brands including Takeaway.com, Just Eat, SkipTheDishes, Grubhub, and Menulog. YumWeGo operate various food ordering and delivery platforms, where customers can order food online from restaurants’ menus, and have it delivered by restaurant or company couriers directly to their home or workplace using an app or website.</p>
+            <p style="color: white">Following clearance by the United Kingdom's Competition and Markets Authority on 22 April 2020, YumWeGo.com merged with UK-based food delivery service Just Eat, in February 2020. It is listed on Euronext Amsterdam, the London Stock Exchange, and the Nasdaq.</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

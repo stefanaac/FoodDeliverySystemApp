@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <style>
+        body {
+            background-image: url({% static 'users/images/bg.png' %});
+        }
+        </style>
+        <h1>You have been logged out!</h1>
+        <h5><a href="{% url 'login' %}" style="color: black">Login again</a></h5>
+    </div>
+{% endblock %}

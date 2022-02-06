@@ -1,0 +1,72 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+    </style>
+</div>
+
+    <div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+
+            <h1><strong >{{restaurant.restaurant_name}}</strong></h1>
+        </div>
+        <div class="box-element" >
+            <form method="POST" class="post-form" action="/adminRestaurantEdit/{{restaurant.administrator_id}}/" >
+                {% csrf_token %}
+                <div id="restaurant-info-phone-number">
+                    <div >
+                        <h6>Phone number: {{restaurant.restaurant_phone}}</h6>
+                    </div>
+                    <div >
+                        <input  class="form-control" type="text" name="phoneNumber" value="{{ restaurant.restaurant_phone }}" placeholder="New phone number">
+                    </div>
+                </div>
+
+                <div id="restaurant-info-address">
+                    <hr>
+                    <div >
+                        <h6>Address: {{restaurant.restaurant_addres}}</h6>
+                    </div>
+                    <div >
+                        <input  class="form-control" type="text" name="address" value="{{ restaurant.restaurant_addres }}" placeholder="New address">
+                    </div>
+                </div>
+
+                <div id="restaurant-info-open-time">
+                    <hr>
+                    <div >
+                        <h6>Open time: {{restaurant.restaurant_opentime}}</h6>
+                    </div>
+                    <div>
+                        <input  class="form-control" type="text" name="opentime" value="{{ restaurant.restaurant_opentime }}" placeholder="New open time">
+                    </div>
+                </div>
+
+                <div id="restaurant-info-close-time">
+                    <hr>
+                    <div >
+                        <h6>Close time: {{restaurant.restaurant_closetime}}</h6>
+                    </div>
+                    <div >
+                        <input  class="form-control" type="text" name="closetime" value="{{ restaurant.restaurant_closetime }}" placeholder="New close time">
+                    </div>
+
+                </div>
+                <input type="submit" value="OK">
+<!--                <a class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" value="OK">Submit</a>-->
+                <hr>
+                <a href="{% url 'restaurantProducts' restaurant.menu_id %}" class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit">View Menu</a>
+            </form>
+        </div>
+    </div>
+
+
+    </div>
+
+{% endblock content %}

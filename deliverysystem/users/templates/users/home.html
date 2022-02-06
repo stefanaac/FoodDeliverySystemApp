@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+    </style>
+</div>
+    <div class="container">
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{restaurant.imageURL}}">
+            <div class="box-element restaurant">
+                <h6><strong>{{restaurant.restaurant_name}}</strong></h6>
+                <hr>
+                <a class="btn "style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="{% url 'namedUrl' restaurant.menu_id %}">View Menu</a>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock content %}

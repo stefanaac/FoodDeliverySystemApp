@@ -1,0 +1,84 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+    </style>
+</div>
+
+   <div class="container">
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+        {% for prod in product %}
+            <h1><strong >{{prod.product_name}}</strong></h1>
+        </div>
+
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="product-info-name">
+                    <div class="form-field">
+                        <h6>Name: {{prod.product_name}}</h6>
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="name" name="name" placeholder="New product name">
+                    </div>
+                    <a class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Edit name</a>
+
+                </div>
+
+                <div id="product-info-description">
+                    <hr>
+                    <div class="form-field">
+                        <h6>Description: {{prod.product_description}}</h6>
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="description" name="description" placeholder="New description">
+                    </div>
+                    <a class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Edit description</a>
+                </div>
+
+                 <div id="product-info-price">
+                    <hr>
+                    <div class="form-field">
+                        <h6>Price: {{prod.product_price}}</h6>
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="price" name="price" placeholder="New price">
+                    </div>
+                    <a class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Edit price</a>
+                </div>
+
+                <div id="product-info-vegan">
+                    <hr>
+                    <div class="form-field">
+                        <h6>Is vegan: {{prod.vegan}}</h6>
+                    </div>
+                    <div class="form-field">
+                        <input input type="checkbox" id="vegan" name="vegan" value="New vegan status">
+                    </div>
+                    <a class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Edit vegan status</a>
+                </div>
+
+                <div id="product-info-vegetarion">
+                    <hr>
+                    <div class="form-field">
+                        <h6>Is vegetarian: {{prod.vegan}}</h6>
+                    </div>
+                    <div class="form-field">
+                        <input input type="checkbox" id="vegetarian" name="vegetarian" value="New vegetarian status">
+                    </div>
+                    <a class="btn" aria-current="page" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Edit vegetarian status</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+        {% endfor %}
+
+    </div>
+{% endblock content %}

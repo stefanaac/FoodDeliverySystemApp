@@ -1,0 +1,30 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+    </style>
+</div>
+    <div class="container">
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{product.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{product.product_name}}</strong></h6>
+                <hr>
+                <a href="{% url 'editAProduct' product.id %}" class="btn "style="color: white; background-color: #fd5e14;" type="submit" id="header-links">Edit</a>
+                <a class="btn "style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Delete</a>
+                <h4 style="display: inline-block;float: right">${{product.product_price}} </h4>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    </div>
+{% endblock content %}

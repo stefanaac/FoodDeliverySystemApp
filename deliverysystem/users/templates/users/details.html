@@ -1,0 +1,23 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+
+    </style>
+    {% for p in product%}
+    <h1>{{p.product_name}}</h1>
+    <img src="{{p.imageURL}}" width="300" height="300">
+    <div class="box-element">
+    <div style="flex:2"><p>{{p.product_description}}</p></div>
+        {% endfor%}
+</div>
+
+
+</div>
+{% endblock content %}

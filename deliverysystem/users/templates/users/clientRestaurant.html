@@ -1,0 +1,41 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+    </style>
+</div>
+    <div class="container">
+
+    <div class="row">
+        {% for product in productss %}
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{product.imageURL}}">
+            <div class="box-element product">
+                <h6><strong>{{product.product_name}}</strong></h6>
+                <hr>
+                <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart" style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="#">Add to cart</button>
+                <a class="btn " style="color: white; background-color: #fd5e14;" type="submit" id="header-links" href="{% url 'namedProductDetailsUrl' product.id %}">View details</a>
+                <h4 style="display: inline-block;float: right">${{product.product_price}} </h4>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+<script type="text/javascript">
+    function addItemToOrderItems() {
+        var item = document.getElementsByClassName("btn btn-outline-secondary add-btn update-cart")
+
+        item.addEventListener('click', function() {
+
+        }
+    }
+</script>
+
+{% endblock content %}

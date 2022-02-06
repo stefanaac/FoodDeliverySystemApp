@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/bg.png' %});
+        }
+    </style>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-sm-12 offset-md-1 p-4 text-center">
+            <h1 style="color: white">You can find us here:</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-10 col-sm-12 offset-md-1 p-4 text-center">
+            <p style="color: white">Phone number: 0365-777-298</p>
+            <p style="color: white">Email: bestfooddelivery@contact.ro</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

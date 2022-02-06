@@ -1,0 +1,35 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'users/css/main1.css' %}">
+<div class="container mb-5">
+    <style>
+        body {
+            background-image: url({% static 'users/images/b.png' %});
+        }
+    </style>
+</div>
+
+<div class="row">
+    {% for order in orders %}
+    <div class="col-lg-6" id="take-order">
+        <div class="box-element">
+            <div class="box-element">
+                <h5>Order: {{order.id}}</h5>
+				<h5>Items: {{order.get_cart_items}}</h5>
+				<h5>Total: {{order.get_cart_total}}</h5>
+			</div>
+            <br>
+            <button class="btn " style="color: white; background-color: #fd5e14;" type="submit" id='" + order.id +"' onclick="takeOrder()">Take order</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script type="text/javascript">
+    function takeOrder() {
+        document.getElementById('take-order').classList.add('hidden')
+    }
+</script>
+{% endblock content %}

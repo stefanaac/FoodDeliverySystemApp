@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <style>
+        body {
+            background-image: url({% static 'users/images/bg.png' %});
+        }
+        </style>
+        <h1 style="color: white">Username: {{user.username}} </h1>
+        <h2 style="color: white">Email address: {{user.email}}</h2>
+    </div>
+{% endblock %}

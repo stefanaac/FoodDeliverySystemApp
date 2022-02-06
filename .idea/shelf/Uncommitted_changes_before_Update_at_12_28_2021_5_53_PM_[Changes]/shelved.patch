@@ -1,0 +1,85 @@
+Index: deliverysystem/users/models.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from django.db import models\r\nfrom django.contrib.auth.models import User\r\n\r\n\r\n# Create your models here.\r\n\r\n\r\nclass AdministratorRestaurant(models.Model):\r\n    first_name = models.CharField(max_length=50, null=True)\r\n    surname = models.CharField(max_length=50, null=True)\r\n    adress = models.CharField(max_length=100, null=True)\r\n    phone_number = models.CharField(max_length=10, null=True)\r\n    employment_date = models.CharField(max_length=10, null=True)\r\n\r\n    def __str__(self):\r\n        return self.first_name + self.surname\r\n\r\n\r\nclass Menu(models.Model):\r\n    name = models.CharField(max_length=50)\r\n    menu_type = models.CharField(max_length=500, null=True, blank=True)\r\n\r\n    def __str__(self):\r\n        return self.name\r\n\r\n\r\nclass Restaurant(models.Model):\r\n    menu = models.OneToOneField(\r\n        Menu,\r\n        on_delete=models.CASCADE,\r\n    )\r\n    administrator = models.OneToOneField(\r\n        AdministratorRestaurant,\r\n        on_delete=models.CASCADE,\r\n        primary_key=True,\r\n    )\r\n    restaurant_name = models.CharField(max_length=1000, null=True)\r\n    restaurant_url = models.CharField(max_length=1000, null=True, blank=True)\r\n    restaurant_owner = models.CharField(max_length=1000, null=True, blank=True)\r\n    restaurant_phone = models.CharField(max_length=10, null=True)\r\n    restaurant_addres = models.CharField(max_length=10000, null=True, blank=True)\r\n    restaurant_opentime = models.TimeField(null=True, blank=True)\r\n    restaurant_closetime = models.TimeField(null=True, blank=True)\r\n    restaurant_image = models.CharField(max_length=10000, null=True, blank=True)\r\n\r\n    def __str__(self):\r\n        return self.restaurant_name\r\n\r\n\r\n# MenuItem\r\nclass Product(models.Model):\r\n    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)\r\n    product_name = models.CharField(max_length=3000)\r\n    product_image = models.CharField(max_length=5000, null=True, blank=True)\r\n    product_description = models.TextField(max_length=10000, null=True, blank=True)\r\n    product_price = models.PositiveIntegerField()\r\n    veg = models.BooleanField(null=True, blank=True)\r\n    nonveg = models.BooleanField(null=True, blank=True)\r\n    vegetarian = models.BooleanField(null=True, blank=True)\r\n    non_vegetarian = models.BooleanField(null=True, blank=True)\r\n\r\n    def __str__(self):\r\n        return self.product_name\r\n\r\n\r\nclass DeliveryGuy(models.Model):\r\n    name = models.CharField(max_length=50)\r\n    id = models.PositiveIntegerField(primary_key=True)\r\n    phoneNumber = models.CharField(max_length=10)\r\n\r\n    def __str__(self):\r\n        return self.name\r\n\r\nclass Customer(models.Model):\r\n    pass\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/deliverysystem/users/models.py b/deliverysystem/users/models.py
+--- a/deliverysystem/users/models.py	(revision 3ca14190dfaac99a0fab35a11c61e21cc77cc283)
++++ b/deliverysystem/users/models.py	(date 1640706585752)
+@@ -4,14 +4,12 @@
+ 
+ # Create your models here.
+ 
+-
+ class AdministratorRestaurant(models.Model):
+     first_name = models.CharField(max_length=50, null=True)
+     surname = models.CharField(max_length=50, null=True)
+     adress = models.CharField(max_length=100, null=True)
+     phone_number = models.CharField(max_length=10, null=True)
+     employment_date = models.CharField(max_length=10, null=True)
+-
+     def __str__(self):
+         return self.first_name + self.surname
+ 
+@@ -70,6 +68,3 @@
+ 
+     def __str__(self):
+         return self.name
+-
+-class Customer(models.Model):
+-    pass
+Index: deliverysystem/users/static/users/css/main1.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>h1,h2,h3,h4,h5,h6{\r\n\tcolor:hsl(0, 0%, 30%);\r\n}\r\n\r\n.box-element{\r\n\tbox-shadow:hsl(0, 0%, 80%) 0 0 16px;\r\n\tbackground-color: #fff;\r\n\tborder-radius: 4px;\r\n\tpadding: 10px;\r\n}\r\n\r\n.thumbnail{\r\n\twidth: 100%;\r\n\theight: 200px;\r\n\t-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);\r\n    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);\r\n    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);\r\n}\r\n\r\n.product{\r\n\tborder-radius: 0 0 4px 4px;\r\n}\r\n\r\n.bg-dark{\r\n\tbackground-color: #4f868c!important;\r\n}\r\n\r\n#cart-icon{\r\n\twidth:25px;\r\n\tdisplay: inline-block;\r\n\tmargin-left: 15px;\r\n}\r\n\r\n#cart-total{\r\n\tdisplay: block;\r\n\ttext-align: center;\r\n\tcolor:#fff;\r\n\tbackground-color: red;\r\n\twidth: 20px;\r\n\theight: 25px;\r\n\tborder-radius: 50%;\r\n\tfont-size: 14px;\r\n}\r\n\r\n.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{\r\n\tmargin-top: 10px;\r\n}\r\n\r\n.btn{\r\n\tborder-radius: 0;\r\n}\r\n\r\n.row-image{\r\n\twidth: 100px;\r\n}\r\n\r\n.form-field{\r\n\twidth:250px;\r\n\tdisplay: inline-block;\r\n\tpadding: 5px;\r\n}\r\n\r\n.cart-row{\r\n\tdisplay: flex;\r\n    align-items: flex-stretch;\r\n    padding-bottom: 10px;\r\n    margin-bottom: 10px;\r\n    border-bottom: 1px solid #ececec;\r\n}\r\n\r\n.quantity{\r\n\tdisplay: inline-block;\r\n\tfont-weight: 700;\r\n\tpadding-right:10px;\r\n}\r\n\r\n.chg-quantity{\r\n\twidth: 12px;\r\n\tcursor: pointer;\r\n\tdisplay: block;\r\n\tmargin-top: 5px;\r\n\ttransition:.1s;\r\n}\r\n\r\n.chg-quantity:hover{\r\n\topacity: .6;\r\n}\r\n\r\n\r\n.hidden{\r\n\tdisplay: none!important;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/deliverysystem/users/static/users/css/main1.css b/deliverysystem/users/static/users/css/main1.css
+--- a/deliverysystem/users/static/users/css/main1.css	(revision 3ca14190dfaac99a0fab35a11c61e21cc77cc283)
++++ b/deliverysystem/users/static/users/css/main1.css	(date 1640706748184)
+@@ -86,7 +86,6 @@
+ 	opacity: .6;
+ }
+ 
+-
+ .hidden{
+ 	display: none!important;
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2543a3a0-683c-4560-8a80-142b6214a96b\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/.gitignore\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/FoodDeliverySystemApp.iml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/deliverysystem/users/templates/users/adminRestaurant.html\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/deliverysystem/users/urls.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/deliverysystem/users/urls.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/deliverysystem/users/views.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/deliverysystem/users/views.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"22v33r3ySu3ETGxeTracGoGgP7y\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"DefaultHtmlFileTemplate\" value=\"HTML File\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2543a3a0-683c-4560-8a80-142b6214a96b\" name=\"Changes\" comment=\"\" />\r\n      <created>1640704037675</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1640704037675</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 3ca14190dfaac99a0fab35a11c61e21cc77cc283)
++++ b/.idea/workspace.xml	(date 1640706648479)
+@@ -2,15 +2,7 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="2543a3a0-683c-4560-8a80-142b6214a96b" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/FoodDeliverySystemApp.iml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/deliverysystem/users/templates/users/adminRestaurant.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/deliverysystem/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverysystem/users/urls.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/deliverysystem/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverysystem/users/views.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/deliverysystem/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/deliverysystem/users/models.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -63,6 +55,7 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
